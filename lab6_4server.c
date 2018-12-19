@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include <stdlib.h>
-#inclide <netinet/in.h>
+#include <netinet/in.h>
 
 int fd;
 
