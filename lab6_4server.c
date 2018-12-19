@@ -44,6 +44,7 @@ int main (int argc, char *argv[])
 		given = accept (fd, NULL, NULL);
 		if(read(given, buffer, 4096))
 		{
+			printf("Massage:");
 			output = fopen("storage", "a+");
 			printf("%s\n", buffer);
 			fprintf(output, "%s\n", buffer);

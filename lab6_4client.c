@@ -49,6 +49,7 @@ int main (int argc, char *argv[])
 	{
 		struct in_addr *tmp = (struct in_addr*) host->h_addr_list[i];
 		strcat(buffer, inet_ntoa(*tmp));
+		buffer[strlen(buffer)] = '\n';
 		i++;
 	}
 	write(fd, buffer, 4096);
