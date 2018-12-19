@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <signal.h>
 #include <stdlib.h>
+#inclide <netinet/in.h>
 
 int fd;
 
@@ -35,7 +36,7 @@ int main (int argc, char *argv[])
 	}
 
 	listen (fd, 10);
-	char buffre[4096];
+	char buffer[4096];
 
 	signal(SIGTERM, Stop);
 	
