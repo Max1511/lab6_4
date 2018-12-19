@@ -6,6 +6,7 @@
 #include <signal.h>
 #include <arpa/inet.h>
 #include <string.h>
+#inclide <netinet/in.h>
 
 int main (int argc, char *argv[])
 {
