@@ -12,22 +12,44 @@ void Stop (int signalno)
         exit(0);
 }
 
-int main (int argc, char* argv[])
+int main (int argc, char *argv[])
 {
-        printf("%d\n", getpid());
+	printf("%d\n", getpid());
 
-        char buffer[4096];
-        char *fifo = "buffer_channel_4";
+	struct sockaddr_in local;
+	inet_aton("127.0.0.1", &local.sin_addr);
+	local.sin_port = htons(3000);
+	local.sin_family = AF_INET;
 
-        mkfifo (fifo, 0666);
+	int fd = socket(AF_INET, SOCK_STREAM, 0);
+	
+	if(fd < 0)
+	{
+		fprintf(stderr, "Error of Socket\n");
+		return -1;
+	}
+	if(bind(fd, (struct sockaddr*)&loc, sizeof(loc)) < 0)
+	{
+		fprintf(stderr, "Error of bind()\n");
+		return -1;
+	}
 
-        while (1)
-        {
-                signal (SIGUSR1, Stop);
-                fd = open(fifo, O_RDONLY);
-                printf("Massage:\n");
-                read (fd, &buffer, 4096);
-                printf("%s\n", buffer);
-        }
-		return 0;
+	listen (fd, 10);
+	char buffre[4096];
+
+	signal(SIGTERM, Stop);
+	
+	while(1)
+	{
+		given = accept (fd, NULL, NULL);
+		if(read(given, buffer, 4096))
+		{
+			output = fopen("storage", "a+");
+			printf("%s\n", buffer);
+			fprintf(output, "%s\n", buffer);
+			
+			fclose(output);
+		}
+	}
+	return 0;
 }
